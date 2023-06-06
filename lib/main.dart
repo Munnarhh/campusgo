@@ -1,4 +1,5 @@
 import 'package:campusgo/home.dart';
+import 'package:campusgo/onboarding/presentation/views/splash_screen.dart';
 import 'package:campusgo/routes/routes.dart';
 import 'package:campusgo/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter On boarding',
           theme: theme(context),
           //home: const Home(),
-          initialRoute: Home.routeName,
+          initialRoute: SplashScreen.routeName,
           routes: routes,
         );
       },
