@@ -1,7 +1,7 @@
 import 'package:campusgo/home.dart';
-import 'package:campusgo/onboarding/presentation/views/splash_screen.dart';
-import 'package:campusgo/routes/routes.dart';
-import 'package:campusgo/theme/theme.dart';
+import 'package:campusgo/features/onboarding/presentation/views/splash_screen.dart';
+import 'package:campusgo/core/routes/routes.dart';
+import 'package:campusgo/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

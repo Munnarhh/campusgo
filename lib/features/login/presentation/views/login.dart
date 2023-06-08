@@ -1,7 +1,8 @@
+import 'package:campusgo/features/login/presentation/views/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../constants/constants.dart';
+import '../../../../core/constants/constants.dart';
 
 class LoginRegister extends StatefulWidget {
   static String routeName = 'LoginRegister';
@@ -12,12 +13,18 @@ class LoginRegister extends StatefulWidget {
 }
 
 class _LoginRegisterState extends State<LoginRegister>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   late TabController _tabController;
+
+  @override
+  bool get wantKeepAlive => true;
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
   }
 
   @override
@@ -28,6 +35,7 @@ class _LoginRegisterState extends State<LoginRegister>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(kBackgroundColor),
@@ -60,7 +68,8 @@ class _LoginRegisterState extends State<LoginRegister>
               ),
               TabBar(
                 labelColor: Colors.black,
-                unselectedLabelColor: Colors.grey[750],
+                unselectedLabelColor: Colors.black.withOpacity(0.6),
+
                 labelStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
@@ -69,40 +78,44 @@ class _LoginRegisterState extends State<LoginRegister>
                     .textTheme
                     .bodySmall!
                     .copyWith(fontSize: 15.sp),
-
-                // dividerColor: Colors.pink[750],
+                //dividerColor: Colors.pink[750],
                 indicatorColor: Colors.black,
+
                 indicatorWeight: 1,
                 indicatorSize: TabBarIndicatorSize.tab,
-
                 controller: _tabController,
                 tabs: const [
                   Tab(
-                    text: 'LoginRegister',
+                    text: 'Login',
                   ),
-                  Tab(text: 'Sign Up'),
+                  Tab(
+                    text: 'Register',
+                  ),
                 ],
               ),
+              SizedBox(
+                height: 5.h,
+              ),
               Expanded(
-                  child: TabBarView(
-                physics: const BouncingScrollPhysics(),
-                controller: _tabController,
-                children: [
-                  Container(
-                    color: Colors.yellow,
-                    child: Center(
-                      child: Text('LoginRegister content'),
+                child: TabBarView(
+                  controller: _tabController,
+                  physics: const ClampingScrollPhysics(),
+                  children: [
+                    Container(
+                      color: Colors.yellow,
+                      child: const Center(
+                        child: Text('LoginRegister content'),
+                      ),
                     ),
-                  ),
-                  // Sign Up tab content
-                  Container(
-                    color: Colors.orange,
-                    child: Center(
-                      child: Text('Sign Up content'),
+                    // Sign Up tab content
+
+                    Builder(
+                      builder: (BuildContext context) =>
+                          const RegistrationPage(),
                     ),
-                  ),
-                ],
-              ))
+                  ],
+                ),
+              )
             ],
           ),
         ),

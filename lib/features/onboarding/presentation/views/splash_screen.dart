@@ -1,6 +1,5 @@
-import 'package:campusgo/constants/constants.dart';
-import 'package:campusgo/home.dart';
-import 'package:campusgo/onboarding/presentation/views/onboarding.dart';
+import 'package:campusgo/core/constants/constants.dart';
+import 'package:campusgo/features/onboarding/presentation/views/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
