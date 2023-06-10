@@ -1,4 +1,7 @@
+import 'package:campusgo/core/widgets/success_page.dart';
 import 'package:campusgo/features/login/presentation/views/createpassword.dart';
+import 'package:campusgo/features/login/presentation/views/forgot_password.dart';
+import 'package:campusgo/features/login/presentation/views/otp_verification.dart';
 import 'package:campusgo/home.dart';
 import 'package:campusgo/features/login/presentation/views/login.dart';
 import 'package:campusgo/features/login/presentation/views/loginpage.dart';
@@ -17,4 +20,7 @@ Map<String, WidgetBuilder> routes = {
   RegistrationPage.routename: (context) => const RegistrationPage(),
   LoginPage.routename: (context) => const LoginPage(),
   CreatePassword.routename: (context) => const CreatePassword(),
+  OtpVerification.routeName: (context) => const OtpVerification(),
+  SuccessPage.routeName: (context) => const SuccessPage(),
+  ForgotPasswordPage.routeName: (context) => const ForgotPasswordPage(),
 };

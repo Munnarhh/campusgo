@@ -22,7 +22,7 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: MaterialButton(
-        elevation: 3,
+        elevation: 4,
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
         onPressed: enabled ? onPressed : null,
         shape: RoundedRectangleBorder(

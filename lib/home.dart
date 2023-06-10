@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
           height: 80.h,
           width: 100.h,
           color: Colors.white,
-          child: const SpinKitDancingSquare(
+          child: const SpinKitFadingFour(
             color: Colors.black,
           ),
         ),

@@ -17,3 +17,7 @@ const String kLogo = "assets/icons/logo.svg";
 const String kApple = "assets/icons/apple.svg";
 const String kMicrosoft = "assets/icons/microsoft.svg";
 const String kGoogle = "assets/icons/google.svg";
+const String kSuccess = "assets/icons/success.svg";
+
+//Gifs
+const String kSuccesss = "assets/gifs/success.gif";

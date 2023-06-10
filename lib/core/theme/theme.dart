@@ -2,6 +2,7 @@ import 'package:campusgo/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pinput/pinput.dart';
 
 ThemeData theme(BuildContext context) => ThemeData(
       primaryColor: const Color(0xFF7A64FF),
@@ -9,7 +10,7 @@ ThemeData theme(BuildContext context) => ThemeData(
       textTheme: TextTheme(
         bodyLarge: GoogleFonts.poppins(
           fontWeight: FontWeight.w800,
-          fontSize: 26.sp,
+          fontSize: 27.sp,
           color: Colors.white,
           letterSpacing: -0.4,
         ),
@@ -71,3 +72,33 @@ ThemeData theme(BuildContext context) => ThemeData(
         contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       ),
     );
+
+PinTheme kDefaultPin(BuildContext context) {
+  return PinTheme(
+    width: 50.w,
+    height: 55.h,
+    textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+        color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: kPrimaryColor2),
+    ),
+  );
+}
+
+/// PinThemes for foucsed OTP
+PinTheme kFocusedPin(BuildContext context) {
+  return PinTheme(
+    width: 55.w,
+    height: 60.h,
+    textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+        color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(
+        color: kPrimaryColor2,
+        width: 3,
+      ),
+    ),
+  );
+}

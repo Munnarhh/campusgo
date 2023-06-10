@@ -13,6 +13,18 @@ String? validateEmail(String field) {
   }
 }
 
+String? validateOtp(String field) {
+  if (field.isEmpty) {
+    return 'Pin field cannot be empty';
+  } else {
+    if (field.length < 6) {
+      return 'Pin cannot be less than six';
+    } else {
+      return null;
+    }
+  }
+}
+
 String? validatePassword(String field) {
   String pattern =
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~.%^]).{8,}$';
@@ -29,7 +41,7 @@ String? validatePassword(String field) {
     } else if (!hasSpecialCharacter(field)) {
       return 'Password must have a special character';
     } else if (!hasANumber(field)) {
-      return 'Password must have a special character';
+      return 'Password must have a Number';
     } else {
       RegExp regExp = RegExp(pattern);
       if (regExp.hasMatch(field)) {
@@ -99,10 +111,10 @@ String? validateBVN(String field) {
   }
 }
 
-bool validateOtp(String field) {
-  if (field.length < 6) return false;
-  return true;
-}
+// bool validateOtp(String field) {
+//   if (field.length < 6) return false;
+//   return true;
+// }
 
 String? validatePhone(String field) {
   if (field.length < 11) {
