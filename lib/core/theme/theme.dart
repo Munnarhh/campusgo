@@ -32,11 +32,17 @@ ThemeData theme(BuildContext context) => ThemeData(
           color: Colors.black.withOpacity(0.7),
           letterSpacing: 0,
         ),
+        displayLarge: GoogleFonts.poppins(
+          fontWeight: FontWeight.w700,
+          fontSize: 27.sp,
+          color: Colors.black,
+          letterSpacing: -0.4,
+        ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         errorStyle: GoogleFonts.poppins(
           fontWeight: FontWeight.w500,
-          fontSize: 14.sp,
+          fontSize: 15.sp,
           color: Colors.red,
           letterSpacing: 0,
         ),
@@ -44,26 +50,26 @@ ThemeData theme(BuildContext context) => ThemeData(
         filled: true,
         hintStyle: GoogleFonts.poppins(
           fontWeight: FontWeight.w500,
-          fontSize: 14.sp,
+          fontSize: 15.sp,
           color: Colors.black.withOpacity(0.7),
           letterSpacing: 0,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(16.r),
           borderSide: const BorderSide(
             color: Colors.red,
             width: 2,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(16.r),
           borderSide: const BorderSide(
             color: Colors.red,
             width: 2,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(16.r),
           borderSide: const BorderSide(
             color: kPrimaryColor2,
             width: 2,

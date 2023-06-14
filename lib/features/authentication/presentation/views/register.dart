@@ -1,14 +1,15 @@
 import 'package:campusgo/core/constants/constants.dart';
 import 'package:campusgo/core/widgets/primarybutton.dart';
-import 'package:campusgo/features/login/presentation/views/createpassword.dart';
+import 'package:campusgo/features/authentication/presentation/views/createpassword.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RegistrationPage extends StatefulWidget {
-  static String routename = 'RegistrationPage';
+  static String routeName = 'RegistrationPage';
   const RegistrationPage({super.key});
 
   @override
@@ -24,6 +25,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   bool _isLoading = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _selectedGender;
+  bool _isChecked = false;
 
   @override
   void dispose() {
@@ -86,7 +88,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
             Form(
               key: _formKey,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    'First Name',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   TextFormField(
                     controller: _firstNameController,
                     textInputAction: TextInputAction.next,
@@ -99,7 +112,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     decoration: const InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
-                      hintText: 'Firstname',
+                      hintText: 'Enter First Name',
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -111,6 +124,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 24.h,
                   ),
+                  Text(
+                    'Last Name',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   TextFormField(
                     controller: _lastNameController,
                     textInputAction: TextInputAction.next,
@@ -119,7 +142,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
                     decoration: const InputDecoration(hintText: 'Lastname'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -131,6 +154,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 24.h,
                   ),
+                  Text(
+                    'Username',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   TextFormField(
                     controller: _usernameController,
                     textInputAction: TextInputAction.next,
@@ -139,8 +172,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 16.sp),
-                    decoration: const InputDecoration(hintText: 'Username'),
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
+                    decoration: const InputDecoration(
+                        hintText: 'Enter your Unique Username'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a username';
@@ -151,6 +185,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 24.h,
                   ),
+                  Text(
+                    'E-mail',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   TextFormField(
                     controller: _emailController,
                     textInputAction: TextInputAction.next,
@@ -158,9 +202,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
                     keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(hintText: 'Email'),
+                    decoration:
+                        const InputDecoration(hintText: 'student@example.com'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
@@ -174,12 +219,22 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 24.h,
                   ),
+                  Text(
+                    'Gender',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   DropdownButtonFormField<String>(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
                     elevation: 0,
                     itemHeight: 60.h,
                     //isExpanded: true,
@@ -190,7 +245,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       });
                     },
                     decoration: const InputDecoration(
-                      hintText: 'Gender',
+                      hintText: 'Select Gender',
                     ),
                     items: <String>['Male', 'Female', 'LGBTQ']
                         .map<DropdownMenuItem<String>>((String value) {
@@ -209,6 +264,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 24.h,
                   ),
+                  Text(
+                    'Phone Number',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   TextFormField(
                     controller: _phoneNumberController,
                     textInputAction: TextInputAction.done,
@@ -217,9 +282,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
                     decoration: const InputDecoration(
-                      hintText: 'Phone number',
+                      hintText: '08102481227',
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -234,14 +299,67 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  PrimaryButton(
-                    isLoading: _isLoading,
-                    text: 'Continue',
-                    onPressed: () => _submitForm(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        value: _isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _isChecked = value!;
+                          });
+                        },
+                        activeColor: const Color(kPrimaryColor),
+                      ),
+                      SizedBox(width: 8.w),
+                      Flexible(
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'I hereby agree to the ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: Colors.black,
+                                  fontSize: 13.sp,
+                                ),
+                            children: [
+                              TextSpan(
+                                text: 'Terms and Conditions',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        color: kPrimaryColor2, fontSize: 13.sp),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    // Handle Terms and Conditions link tap
+                                  },
+                              ),
+                              TextSpan(
+                                text: ' guiding this app.',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        color: Colors.black, fontSize: 13.sp),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 24.h,
                   ),
+                  PrimaryButton(
+                    enabled: _isChecked,
+                    isLoading: _isLoading,
+                    text: 'Continue',
+                    onPressed: () => _submitForm(),
+                  ),
+                  SizedBox(height: 24.h),
                 ],
               ),
             ),
@@ -268,7 +386,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
         Navigator.pushNamed(
           context,
-          CreatePassword.routename,
+          CreatePassword.routeName,
         );
       });
     }

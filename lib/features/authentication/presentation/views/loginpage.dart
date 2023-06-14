@@ -1,5 +1,6 @@
-import 'package:campusgo/core/widgets/success_page.dart';
-import 'package:campusgo/features/login/presentation/views/forgot_password.dart';
+import 'package:campusgo/features/authentication/presentation/views/forgot_password.dart';
+import 'package:campusgo/features/profile/presentation/pages/profile_page.dart';
+import 'package:campusgo/features/ride/presentation/pages/options_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/primarybutton.dart';
 
 class LoginPage extends StatefulWidget {
-  static String routename = 'LoginPage';
+  static String routeName = 'LoginPage';
   const LoginPage({super.key});
 
   @override
@@ -81,8 +82,18 @@ class _LoginPageState extends State<LoginPage> {
               key: _formKey,
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    'Matric Number',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   TextFormField(
                     controller: _matricNumberController,
                     textInputAction: TextInputAction.next,
@@ -91,9 +102,9 @@ class _LoginPageState extends State<LoginPage> {
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
                     decoration: const InputDecoration(
-                      hintText: 'Matric Number',
+                      hintText: '19CG026458',
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -105,18 +116,28 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  TextFormField(
+                  Text(
+                    'Password',
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
                         .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
+                  TextFormField(
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
                     controller: _passwordController,
                     textInputAction: TextInputAction.done,
                     obscureText: _hidePassword,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      hintText: 'Password',
+                      hintText: 'Enter Password',
                       suffixIcon: IconButton(
                         icon: Icon(
                           _hidePassword
@@ -151,16 +172,18 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(
-                          context, ForgotPasswordPage.routeName);
+                      Navigator.pushNamed(context, ProfilePage.routeName);
                     },
-                    child: Text(
-                      'Forgot Password?',
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: const Color(kPrimaryColor),
-                            decoration: TextDecoration.underline,
-                          ),
-                      textAlign: TextAlign.center,
+                    child: Center(
+                      child: Text(
+                        'Forgot Password?',
+                        style:
+                            Theme.of(context).textTheme.displaySmall!.copyWith(
+                                  color: const Color(kPrimaryColor),
+                                  decoration: TextDecoration.underline,
+                                ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -189,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
 
         Navigator.pushNamed(
           context,
-          SuccessPage.routeName,
+          OptionsPage.routeName,
         );
       });
     }

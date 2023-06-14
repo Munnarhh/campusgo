@@ -1,5 +1,5 @@
 import 'package:campusgo/core/constants/constants.dart';
-import 'package:campusgo/features/login/presentation/views/login.dart';
+import 'package:campusgo/features/authentication/presentation/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: depend_on_referenced_packages

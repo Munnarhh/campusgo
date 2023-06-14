@@ -1,5 +1,5 @@
-import 'package:campusgo/features/login/presentation/views/loginpage.dart';
-import 'package:campusgo/features/login/presentation/views/register.dart';
+import 'package:campusgo/features/authentication/presentation/views/loginpage.dart';
+import 'package:campusgo/features/authentication/presentation/views/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -69,7 +69,7 @@ class _LoginRegisterState extends State<LoginRegister>
             ),
             TabBar(
               labelColor: Colors.black,
-              unselectedLabelColor: Colors.black.withOpacity(0.6),
+              unselectedLabelColor: Colors.black.withOpacity(0.7),
 
               labelStyle: Theme.of(context)
                   .textTheme

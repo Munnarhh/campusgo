@@ -19,28 +19,62 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: MaterialButton(
-        elevation: 4,
+    return GestureDetector(
+      onTap: enabled ? onPressed : null,
+      child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-        onPressed: enabled ? onPressed : null,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              offset: const Offset(0, 4),
+              blurRadius: 4,
+              spreadRadius: 0,
+            ),
+          ],
+          color: enabled ? kPrimaryColor2 : Colors.black.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(25.r),
         ),
-        color: enabled ? kPrimaryColor2 : Colors.black.withOpacity(0.7),
+        width: double.infinity,
         child: isLoading
-            ? const SpinKitFadingFour(
-                color: Colors.white,
-                size: 20.0,
+            ? const Center(
+                child: SpinKitFadingFour(
+                  color: Colors.white,
+                  size: 20.0,
+                ),
               )
-            : Text(
-                text,
-                style: theme(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 16.sp,
-                    ),
+            : Center(
+                child: Text(
+                  text,
+                  style: theme(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 16.sp,
+                      ),
+                ),
               ),
       ),
     );
   }
 }
+// SizedBox(
+//       width: double.infinity,
+//       child: MaterialButton(
+//         elevation: 5,
+//         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+//         onPressed: enabled ? onPressed : null,
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(25),
+//         ),
+//         color: enabled ? kPrimaryColor2 : Colors.black.withOpacity(0.7),
+//         child: isLoading
+//             ? const SpinKitFadingFour(
+//                 color: Colors.white,
+//                 size: 20.0,
+//               )
+//             : Text(
+//                 text,
+//                 style: theme(context).textTheme.bodyMedium!.copyWith(
+//                       fontSize: 16.sp,
+//                     ),
+//               ),
+//       ),
+//     );

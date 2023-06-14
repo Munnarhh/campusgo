@@ -29,11 +29,16 @@ class _OtpVerificationState extends State<OtpVerification> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 136.h),
+          padding: EdgeInsets.symmetric(
+            horizontal: 25.w,
+          ),
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 136.h,
+              ),
               Center(
                 child: RichText(
                   textAlign: TextAlign.center,
@@ -62,7 +67,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                 'Enter the verification code sent to your email',
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Colors.black.withOpacity(0.7),
-                      fontSize: 15.sp,
+                      fontSize: 16.sp,
                     ),
               ),
               SizedBox(height: 57.h),

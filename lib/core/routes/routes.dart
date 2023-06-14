@@ -1,11 +1,15 @@
 import 'package:campusgo/core/widgets/success_page.dart';
-import 'package:campusgo/features/login/presentation/views/createpassword.dart';
-import 'package:campusgo/features/login/presentation/views/forgot_password.dart';
-import 'package:campusgo/features/login/presentation/views/otp_verification.dart';
+import 'package:campusgo/features/authentication/presentation/views/createpassword.dart';
+import 'package:campusgo/features/authentication/presentation/views/forgot_password.dart';
+import 'package:campusgo/features/authentication/presentation/views/otp_verification.dart';
+import 'package:campusgo/features/profile/presentation/pages/change_password.dart';
+import 'package:campusgo/features/profile/presentation/pages/profile_page.dart';
+import 'package:campusgo/features/ride/presentation/pages/calendar.dart';
+import 'package:campusgo/features/ride/presentation/pages/options_page.dart';
 import 'package:campusgo/home.dart';
-import 'package:campusgo/features/login/presentation/views/login.dart';
-import 'package:campusgo/features/login/presentation/views/loginpage.dart';
-import 'package:campusgo/features/login/presentation/views/register.dart';
+import 'package:campusgo/features/authentication/presentation/views/login.dart';
+import 'package:campusgo/features/authentication/presentation/views/loginpage.dart';
+import 'package:campusgo/features/authentication/presentation/views/register.dart';
 import 'package:campusgo/features/onboarding/presentation/views/onboarding.dart';
 import 'package:campusgo/features/onboarding/presentation/views/splash_screen.dart';
 
@@ -17,10 +21,14 @@ Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => const SplashScreen(),
   OnboardingScreen.routeName: (context) => const OnboardingScreen(),
   LoginRegister.routeName: (context) => const LoginRegister(),
-  RegistrationPage.routename: (context) => const RegistrationPage(),
-  LoginPage.routename: (context) => const LoginPage(),
-  CreatePassword.routename: (context) => const CreatePassword(),
+  RegistrationPage.routeName: (context) => const RegistrationPage(),
+  LoginPage.routeName: (context) => const LoginPage(),
+  CreatePassword.routeName: (context) => const CreatePassword(),
   OtpVerification.routeName: (context) => const OtpVerification(),
   SuccessPage.routeName: (context) => const SuccessPage(),
   ForgotPasswordPage.routeName: (context) => const ForgotPasswordPage(),
+  OptionsPage.routeName: (context) => const OptionsPage(),
+  ProfilePage.routeName: (context) => const ProfilePage(),
+  ChangePasswordPage.routeName: (context) => const ChangePasswordPage(),
+  SelectDatePage.routeName: (context) => const SelectDatePage(),
 };
