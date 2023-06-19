@@ -1,4 +1,4 @@
-import 'package:campusgo/home.dart';
+import 'package:campusgo/features/home/presentation/pages/home.dart';
 import 'package:campusgo/features/onboarding/presentation/views/splash_screen.dart';
 import 'package:campusgo/core/routes/routes.dart';
 import 'package:campusgo/core/theme/theme.dart';

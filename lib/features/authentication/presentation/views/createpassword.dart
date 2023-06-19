@@ -96,6 +96,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                     ),
                     TextFormField(
                       controller: _passwordController,
+                      textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       focusNode: _passwordFocusNode,
                       obscureText: _obscurePassword,
@@ -143,6 +144,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                     TextFormField(
                       controller: _confirmPasswordController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      textInputAction: TextInputAction.done,
                       obscureText: true,
                       validator: (value) {
                         if (value == null || value.isEmpty) {

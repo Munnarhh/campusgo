@@ -96,6 +96,9 @@ class ForgotPasswordPage extends StatelessWidget {
                 // Add send email functionality here
               },
             ),
+            DraggableScrollableSheet(builder: (_, controller) {
+              return Column();
+            })
           ],
         ),
       ),

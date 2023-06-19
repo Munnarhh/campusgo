@@ -1,5 +1,7 @@
 import 'package:campusgo/features/authentication/presentation/views/forgot_password.dart';
+import 'package:campusgo/features/home/presentation/pages/home.dart';
 import 'package:campusgo/features/profile/presentation/pages/profile_page.dart';
+import 'package:campusgo/features/ride/presentation/pages/my_ride.dart';
 import 'package:campusgo/features/ride/presentation/pages/options_page.dart';
 
 import 'package:flutter/material.dart';
@@ -172,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, ProfilePage.routeName);
+                      Navigator.pushNamed(context, Home.routeName);
                     },
                     child: Center(
                       child: Text(

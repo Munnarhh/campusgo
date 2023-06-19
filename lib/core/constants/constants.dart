@@ -10,6 +10,7 @@ const String kUnselectedSchool = "assets/images/unselectedschool.png";
 const String kHouse = "assets/images/house.png";
 const String kUnselectedHouse = "assets/images/unselectedhouse.png";
 const String kProfileAvatar = "assets/images/profile.png";
+const String kCar = "assets/images/car.png";
 
 //Colors
 const kPrimaryColor = 0xFF7A64FF;
@@ -17,6 +18,7 @@ const kBackgroundColor = 0XFFF2F0F0;
 const Color kPrimaryColor2 = Color(0xFF7A64FF);
 const Color kErrorColor = Color(0XFF610606);
 const Color kWeekStyle = Color(0XFF8F9BB3);
+const Color kDividerColor = Color(0XFFD9D9D9);
 
 //Icons
 const String kNext = "assets/icons/next.svg";
@@ -34,6 +36,15 @@ const String kHelp = "assets/icons/help.svg";
 const String kLogout = "assets/icons/logout.svg";
 const String kCalendar = "assets/icons/calendar.svg";
 const String kMenu = "assets/icons/menu.svg";
+const String kTag = "assets/icons/tag.svg";
+const String kClock = "assets/icons/clock.svg";
+const String kCreditCard = "assets/icons/credit-card.svg";
+const String kAlertCircle = "assets/icons/alert-circle.svg";
+const String kMessage = "assets/icons/message-square.svg";
+const String kBriefcase = "assets/icons/briefcase.svg";
+const String kRight = "assets/icons/ios_forward.svg";
+const String kFilledTag = "assets/icons/filled_tag.svg";
+const String kWhiteTag = "assets/icons/white_tag.svg";
 
 //Gifs
 const String kSuccesss = "assets/gifs/success.gif";

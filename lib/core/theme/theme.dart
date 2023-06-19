@@ -6,8 +6,9 @@ import 'package:pinput/pinput.dart';
 
 ThemeData theme(BuildContext context) => ThemeData(
       primaryColor: const Color(0xFF7A64FF),
-      scaffoldBackgroundColor: const Color(kPrimaryColor),
+      scaffoldBackgroundColor: const Color(kBackgroundColor),
       textTheme: TextTheme(
+        //large
         bodyLarge: GoogleFonts.poppins(
           fontWeight: FontWeight.w800,
           fontSize: 27.sp,
@@ -24,6 +25,12 @@ ThemeData theme(BuildContext context) => ThemeData(
           fontWeight: FontWeight.w500,
           fontSize: 18.sp,
           color: Colors.white,
+          letterSpacing: 0,
+        ),
+        titleMedium: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 14.sp,
+          color: Colors.black,
           letterSpacing: 0,
         ),
         displaySmall: GoogleFonts.poppins(

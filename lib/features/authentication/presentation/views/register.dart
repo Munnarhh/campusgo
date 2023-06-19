@@ -117,7 +117,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your firstname';
-                      } else {}
+                      }
                       return null;
                     },
                   ),
@@ -378,11 +378,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
         setState(() {
           _isLoading = false;
         });
-        _firstNameController.clear();
-        _lastNameController.clear();
-        _usernameController.clear();
-        _emailController.clear();
-        _phoneNumberController.clear();
+        // _firstNameController.clear();
+        // _lastNameController.clear();
+        // _usernameController.clear();
+        // _emailController.clear();
+        // _phoneNumberController.clear();
 
         Navigator.pushNamed(
           context,

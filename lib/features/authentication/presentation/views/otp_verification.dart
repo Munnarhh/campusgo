@@ -1,6 +1,6 @@
 import 'package:campusgo/core/utilities/validation.dart';
 import 'package:campusgo/core/widgets/primarybutton.dart';
-import 'package:campusgo/home.dart';
+import 'package:campusgo/features/home/presentation/pages/home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
