@@ -23,8 +23,7 @@ class _OtpVerificationState extends State<OtpVerification> {
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: const Color(kBackgroundColor),
       body: Form(
         key: _formKey,
@@ -137,7 +136,7 @@ class _OtpVerificationState extends State<OtpVerification> {
           ),
         ),
       ),
-    ));
+    );
   }
 
   void _submitForm() {

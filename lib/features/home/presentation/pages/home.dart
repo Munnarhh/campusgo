@@ -25,168 +25,187 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        key: _scaffoldKey,
-        body: Stack(
-          children: [
-            Positioned.fill(
-              bottom: MediaQuery.of(context).size.height * 0.2,
-              child: Image.asset(
-                kBusDriver,
-                fit: BoxFit.cover,
-              ),
+    return Scaffold(
+      key: _scaffoldKey,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            bottom: MediaQuery.of(context).size.height * 0.2,
+            child: Image.asset(
+              kSchool,
+              fit: BoxFit.cover,
             ),
-            Positioned(
-              left: 16,
-              top: 50,
-              child: FloatingActionButton(
-                backgroundColor: Colors.white,
-                onPressed: () {
-                  _scaffoldKey.currentState!.openDrawer();
-                },
-                child: SvgPicture.asset(kMenu),
-              ),
+          ),
+          Positioned(
+            left: 16,
+            top: 50,
+            child: FloatingActionButton(
+              backgroundColor: Colors.white,
+              onPressed: () {
+                _scaffoldKey.currentState!.openDrawer();
+              },
+              child: SvgPicture.asset(kMenu),
             ),
-            Positioned.fill(
-              child: NotificationListener<DraggableScrollableNotification>(
-                onNotification: (notification) {
-                  setState(() {
-                    _percent = 2 * notification.extent - 0.8;
-                  });
+          ),
+          Positioned.fill(
+            // top: MediaQuery.of(context).size.height * 0.1,
 
-                  return true;
-                },
-                child: DraggableScrollableSheet(
-                  maxChildSize: 0.9,
-                  minChildSize: 0.4,
-                  // expand: false,
-                  builder: (_, controller) {
-                    return ClipRRect(
-                      borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(20)),
-                      child: Material(
+            child: NotificationListener<DraggableScrollableNotification>(
+              onNotification: (notification) {
+                setState(() {
+                  _percent = 2 * notification.extent - 0.8;
+                });
+
+                return true;
+              },
+              child: DraggableScrollableSheet(
+                maxChildSize: 0.9,
+                minChildSize: 0.4,
+                initialChildSize: 0.4,
+                // expand: false,
+                builder: (_, controller) {
+                  return ClipRRect(
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(20)),
+                    child: Material(
+                      color: const Color(kBackgroundColor),
+                      elevation: 10,
+                      child: Container(
                         color: const Color(kBackgroundColor),
-                        elevation: 10,
-                        child: Container(
-                          color: const Color(kBackgroundColor),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Container(
-                                      height: 2.h,
-                                      width: 50.h,
-                                      color: kPrimaryColor2,
-                                    ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Container(
+                                    height: 2.h,
+                                    width: 50.h,
+                                    color: kPrimaryColor2,
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                Text(
-                                  'It is good to see you',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(
-                                        color: Colors.black,
-                                        fontSize: 14.sp,
-                                      ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Text(
-                                  'Where are you going?',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                        color: Colors.black,
-                                        fontSize: 20.sp,
-                                      ),
-                                ),
-                                SizedBox(
-                                  height: 20.h,
-                                ),
-                                const TextField(
-                                  decoration: InputDecoration(
-                                      prefixIcon: Icon(
-                                        Icons.search,
-                                        color: kPrimaryColor2,
-                                      ),
-                                      hintText: 'Search Destination'),
-                                ),
-                                Expanded(
-                                  child: ListView.builder(
-                                      padding: EdgeInsets.only(bottom: 40.h),
-                                      itemCount: 20,
-                                      controller: controller,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          contentPadding: EdgeInsets.zero,
-                                          leading: const Icon(
-                                              Icons.location_on_outlined),
-                                          title: Text(
-                                            'Address: $index',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontSize: 14.sp,
-                                                ),
-                                          ),
-                                          subtitle: Text(
-                                            'City $index',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .displaySmall!
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontSize: 12.sp,
-                                                ),
-                                          ),
-                                        );
-                                      }),
-                                ),
-                              ],
-                            ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                'It is good to see you',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontSize: 14.sp,
+                                    ),
+                              ),
+                              SizedBox(
+                                height: 4.h,
+                              ),
+                              Text(
+                                'Where are you going?',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontSize: 20.sp,
+                                    ),
+                              ),
+                              SizedBox(
+                                height: 1.h,
+                              ),
+                              const TextField(
+                                decoration: InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.search,
+                                      color: kPrimaryColor2,
+                                    ),
+                                    hintText: 'Search Destination'),
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                    padding: EdgeInsets.only(bottom: 40.h),
+                                    itemCount: 20,
+                                    controller: controller,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        contentPadding: EdgeInsets.zero,
+                                        // minLeadingWidth: 0.w,
+                                        leading: const Icon(
+                                          Icons.location_on_outlined,
+                                          size: 25,
+                                          color: kPrimaryColor2,
+                                        ),
+                                        title: Text(
+                                          'Address: $index',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall!
+                                              .copyWith(
+                                                color: Colors.black,
+                                                fontSize: 15.sp,
+                                              ),
+                                        ),
+                                        subtitle: Text(
+                                          'City $index',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displaySmall!
+                                              .copyWith(
+                                                color: Colors.black,
+                                                fontSize: 14.sp,
+                                              ),
+                                        ),
+                                      );
+                                    }),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ),
-            Positioned(
-              left: 0,
-              right: 0,
-              top: -170 * (1 - _percent),
-              child: Opacity(
-                opacity: _percent,
-                child: _SearchDestination(),
-              ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: -170 * (1 - _percent),
+            child: Opacity(
+              opacity: _percent,
+              child: const _SearchDestination(),
             ),
-            Positioned(
-              right: 0,
-              left: 0,
-              bottom: -50 * (1 - _percent),
-              child: Opacity(
-                opacity: _percent,
-                child: const _PickPlaceInMap(),
-              ),
-            )
-          ],
-        ),
-        drawer: const HomeDrawer(),
+          ),
+          Positioned(
+            right: 0,
+            left: 0,
+            bottom: -50 * (1 - _percent),
+            child: Opacity(
+              opacity: _percent,
+              child: const _PickPlaceInMap(),
+            ),
+          ),
+          // Positioned(
+          //   right: 16,
+          //   bottom: 310,
+          //   child: FloatingActionButton(
+          //     backgroundColor: Colors.white,
+          //     onPressed: () {
+          //       // Add your onPressed logic here
+          //     },
+          //     child: const Icon(
+          //       Icons.navigation_sharp,
+          //       color: Colors.black,
+          //     ),
+          //   ),
+          // ),
+        ],
       ),
+      drawer: const HomeDrawer(),
     );
   }
 }
@@ -312,12 +331,26 @@ class _SearchDestination extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 5.h),
+          SizedBox(height: 2.h),
         ],
       ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Stack(
 //         children: [

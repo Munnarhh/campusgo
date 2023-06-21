@@ -48,3 +48,6 @@ const String kWhiteTag = "assets/icons/white_tag.svg";
 
 //Gifs
 const String kSuccesss = "assets/gifs/success.gif";
+
+//keys
+const String kMapKey = "AIzaSyCTsnQMYvepCa1mBh-aYJ6bapBSGN7-NHg";
