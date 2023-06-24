@@ -1,5 +1,6 @@
 import 'package:campusgo/core/constants/constants.dart';
 import 'package:campusgo/core/widgets/primarybutton.dart';
+import 'package:campusgo/features/home/presentation/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -97,7 +98,7 @@ class _OptionsPageState extends State<OptionsPage> {
               onPressed: () {
                 if (selectedOption.isNotEmpty) {
                   if (selectedOption == 'vacation') {
-                    Navigator.pushNamed(context, '/vacation');
+                    Navigator.pushNamed(context, Home.routeName);
                   } else if (selectedOption == 'resumption') {
                     Navigator.pushNamed(context, '/resumption');
                   }

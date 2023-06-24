@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>846952373363-gu6h9ltmma1r9cufuamni65ljvmrnqcn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.846952373363-gu6h9ltmma1r9cufuamni65ljvmrnqcn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB08_ypp18Wh_kFLtgONC_augvYwTwJsYo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>846952373363</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.campusgo</string>
+	<key>PROJECT_ID</key>
+	<string>campusgo-7fc57</string>
+	<key>STORAGE_BUCKET</key>
+	<string>campusgo-7fc57.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:846952373363:ios:e30fed21909ab1a5ffde06</string>
+</dict>
+</plist>

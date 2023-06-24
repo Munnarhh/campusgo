@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/Users/apple/Documents/campusgo/linux"
+  "cmake.sourceDirectory": "/Users/apple/Documents/campusgo/linux",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

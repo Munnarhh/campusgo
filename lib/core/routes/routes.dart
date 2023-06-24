@@ -2,6 +2,8 @@ import 'package:campusgo/core/widgets/success_page.dart';
 import 'package:campusgo/features/authentication/presentation/views/createpassword.dart';
 import 'package:campusgo/features/authentication/presentation/views/forgot_password.dart';
 import 'package:campusgo/features/authentication/presentation/views/otp_verification.dart';
+import 'package:campusgo/features/home/presentation/pages/precise_pickup_location.dart';
+import 'package:campusgo/features/home/presentation/pages/search_place.dart';
 import 'package:campusgo/features/menu/presentation/pages/promo.dart';
 import 'package:campusgo/features/profile/presentation/pages/change_password.dart';
 import 'package:campusgo/features/profile/presentation/pages/profile_page.dart';
@@ -17,6 +19,7 @@ import 'package:campusgo/features/onboarding/presentation/views/splash_screen.da
 
 import 'package:flutter/widgets.dart';
 
+import '../../features/home/presentation/pages/home2.dart';
 import '../../features/menu/presentation/pages/promo_page.dart';
 
 Map<String, WidgetBuilder> routes = {
@@ -38,4 +41,7 @@ Map<String, WidgetBuilder> routes = {
   PromoPage.routeName: (context) => const PromoPage(),
   PromoCodePage.routeName: (context) => const PromoCodePage(),
   MyRidesPage.routeName: (context) => const MyRidesPage(),
+  Homee.routeName: (context) => const Homee(),
+  SearchPlacePlage.routeName: (context) => const SearchPlacePlage(),
+  PrecisePickUpPage.routeName: (context) => const PrecisePickUpPage(),
 };

@@ -1,8 +1,7 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:campusgo/features/authentication/presentation/views/forgot_password.dart';
-import 'package:campusgo/features/home/presentation/pages/home.dart';
-import 'package:campusgo/features/profile/presentation/pages/profile_page.dart';
-import 'package:campusgo/features/ride/presentation/pages/my_ride.dart';
-import 'package:campusgo/features/ride/presentation/pages/options_page.dart';
+
+import 'package:email_validator/email_validator.dart';
 
 import 'package:flutter/material.dart';
 
@@ -11,6 +10,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/widgets/primarybutton.dart';
+import '../../../../global/global.dart';
+import '../../../home/presentation/pages/home2.dart';
 
 class LoginPage extends StatefulWidget {
   static String routeName = 'LoginPage';
@@ -21,16 +22,54 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _matricNumberController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _hidePassword = true;
   bool _isLoading = false;
   @override
   void dispose() {
-    _matricNumberController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  void _submitForm() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      await firebaseAuth
+          .signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      )
+          .then((auth) {
+        currentUser = auth.user;
+
+        if (currentUser!.emailVerified) {
+          // Email is verified, allow login
+          BotToast.showSimpleNotification(title: 'Successfully Logged In');
+          Navigator.pushReplacementNamed(
+            context,
+            Homee.routeName,
+          );
+        } else {
+          // Email is not verified, show an error message
+          BotToast.showSimpleNotification(
+              title: 'Please verify your email before logging in');
+        }
+      }).catchError((errorMessage) {
+        BotToast.showText(text: 'Error occured: \n $errorMessage');
+      });
+
+      setState(() {
+        _isLoading = false;
+      });
+    } else {
+      BotToast.showText(text: 'Not all fields are valid');
+    }
   }
 
   @override
@@ -72,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 33.h),
             Text(
-              'or login with your matric number',
+              'or login with your student email',
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: Colors.black.withOpacity(0.7),
                   ),
@@ -87,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Matric Number',
+                    'Email',
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
@@ -97,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 4.h,
                   ),
                   TextFormField(
-                    controller: _matricNumberController,
+                    controller: _emailController,
                     textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     keyboardType: TextInputType.text,
@@ -106,11 +145,14 @@ class _LoginPageState extends State<LoginPage> {
                         .bodySmall!
                         .copyWith(color: Colors.black, fontSize: 15.sp),
                     decoration: const InputDecoration(
-                      hintText: '19CG026458',
+                      hintText: 'student@example.com',
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your matric number';
+                        return 'Please enter your email';
+                      }
+                      if (!EmailValidator.validate(value)) {
+                        return 'Please enter a valid email';
                       }
                       return null;
                     },
@@ -174,7 +216,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, Home.routeName);
+                      Navigator.pushNamed(
+                          context, ForgotPasswordPage.routeName);
                     },
                     child: Center(
                       child: Text(
@@ -198,25 +241,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
-      Future.delayed(const Duration(seconds: 5), () {
-        setState(() {
-          _isLoading = false;
-        });
-        _matricNumberController.clear();
-        _passwordController.clear();
-
-        Navigator.pushNamed(
-          context,
-          OptionsPage.routeName,
-        );
-      });
-    }
   }
 }

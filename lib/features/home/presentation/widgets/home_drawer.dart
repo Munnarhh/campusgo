@@ -1,4 +1,6 @@
 import 'package:campusgo/features/home/presentation/widgets/home_tile.dart';
+import 'package:campusgo/features/onboarding/presentation/views/splash_screen.dart';
+import 'package:campusgo/global/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +22,7 @@ class HomeDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           SizedBox(
-            height: 30.h,
+            height: 60.h,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -31,14 +33,14 @@ class HomeDrawer extends StatelessWidget {
               child: Row(
                 children: [
                   CircleAvatar(
-                    radius: 35.r,
+                    radius: 45.r,
                   ),
                   SizedBox(width: 12.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Eren',
+                        userModelCurrentInfo!.name!,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium!
@@ -112,15 +114,22 @@ class HomeDrawer extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                CircleAvatar(
-                  radius: 25.r,
-                  backgroundColor: kErrorColor,
-                  child: Text(
-                    'SOS',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: Colors.white, fontSize: 18.sp),
+                GestureDetector(
+                  onTap: () {
+                    firebaseAuth.signOut();
+                    Navigator.pushReplacementNamed(
+                        context, SplashScreen.routeName);
+                  },
+                  child: CircleAvatar(
+                    radius: 25.r,
+                    backgroundColor: kErrorColor,
+                    child: Text(
+                      'SOS',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: Colors.white, fontSize: 18.sp),
+                    ),
                   ),
                 ),
               ],

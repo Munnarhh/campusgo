@@ -1,5 +1,12 @@
+import 'dart:async';
+
 import 'package:campusgo/core/constants/constants.dart';
+import 'package:campusgo/features/authentication/presentation/views/login.dart';
+import 'package:campusgo/features/authentication/presentation/views/loginpage.dart';
+import 'package:campusgo/features/home/assistant/assistant.dart';
+import 'package:campusgo/features/home/presentation/pages/home2.dart';
 import 'package:campusgo/features/onboarding/presentation/views/onboarding.dart';
+import 'package:campusgo/global/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,12 +22,33 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  startTimer() {
+    Timer(const Duration(seconds: 3), () async {
+      if (await firebaseAuth.currentUser != null) {
+        firebaseAuth.currentUser != null
+            ? AssistantMethods.readCurrentOnlineUserInfo()
+            : null;
+        if (!mounted) return;
+        Navigator.pushNamed(context, Homee.routeName);
+      } else {
+        if (!mounted) return;
+        Navigator.pushNamed(context, LoginRegister.routeName);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushNamedAndRemoveUntil(
-          context, OnboardingScreen.routeName, (route) => false);
-    });
+    // Future.delayed(const Duration(seconds: 5), () {
+    //   Navigator.pushNamedAndRemoveUntil(
+    //       context, OnboardingScreen.routeName, (route) => false);
+    // });
     return Scaffold(
       backgroundColor: const Color(kPrimaryColor),
       body: Column(

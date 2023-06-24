@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "846952373363",
+    "project_id": "campusgo-7fc57",
+    "storage_bucket": "campusgo-7fc57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846952373363:android:a3aa30000584a951ffde06",
+        "android_client_info": {
+          "package_name": "com.example.campusgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846952373363-mlsg4vkiocdbdmuoirq1r15e6uohsv44.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ7ZkzSDawETIza8EnzK6H5RJjinmlW7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846952373363-mlsg4vkiocdbdmuoirq1r15e6uohsv44.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

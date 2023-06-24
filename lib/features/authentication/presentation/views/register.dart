@@ -1,15 +1,19 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:campusgo/core/constants/constants.dart';
 import 'package:campusgo/core/widgets/primarybutton.dart';
 import 'package:campusgo/features/authentication/presentation/views/createpassword.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class RegistrationPage extends StatefulWidget {
   static String routeName = 'RegistrationPage';
+
   const RegistrationPage({super.key});
 
   @override
@@ -22,6 +26,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   bool _isLoading = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _selectedGender;
@@ -34,6 +39,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _usernameController.dispose();
     _emailController.dispose();
     _phoneNumberController.dispose();
+    _addressController.dispose();
 
     super.dispose();
   }
@@ -186,6 +192,38 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     height: 24.h,
                   ),
                   Text(
+                    'Address',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
+
+                  TextFormField(
+                    controller: _addressController,
+                    textInputAction: TextInputAction.next,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.text,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
+                    decoration:
+                        const InputDecoration(hintText: 'Enter your address'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter address';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 24.h,
+                  ),
+                  Text(
                     'E-mail',
                     style: Theme.of(context)
                         .textTheme
@@ -219,51 +257,51 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  Text(
-                    'Gender',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 16.sp),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  DropdownButtonFormField<String>(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Colors.black, fontSize: 15.sp),
-                    elevation: 0,
-                    itemHeight: 60.h,
-                    //isExpanded: true,
-                    value: _selectedGender,
-                    onChanged: (newValue) {
-                      setState(() {
-                        _selectedGender = newValue;
-                      });
-                    },
-                    decoration: const InputDecoration(
-                      hintText: 'Select Gender',
-                    ),
-                    items: <String>['Male', 'Female', 'LGBTQ']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please select your gender';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
+                  // Text(
+                  //   'Gender',
+                  //   style: Theme.of(context)
+                  //       .textTheme
+                  //       .bodySmall!
+                  //       .copyWith(color: Colors.black, fontSize: 16.sp),
+                  // ),
+                  // SizedBox(
+                  //   height: 4.h,
+                  // ),
+                  // DropdownButtonFormField<String>(
+                  //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  //   style: Theme.of(context)
+                  //       .textTheme
+                  //       .bodySmall!
+                  //       .copyWith(color: Colors.black, fontSize: 15.sp),
+                  //   elevation: 0,
+                  //   itemHeight: 60.h,
+                  //   //isExpanded: true,
+                  //   value: _selectedGender,
+                  //   onChanged: (newValue) {
+                  //     setState(() {
+                  //       _selectedGender = newValue;
+                  //     });
+                  //   },
+                  //   decoration: const InputDecoration(
+                  //     hintText: 'Select Gender',
+                  //   ),
+                  //   items: <String>['Male', 'Female', 'LGBTQ']
+                  //       .map<DropdownMenuItem<String>>((String value) {
+                  //     return DropdownMenuItem<String>(
+                  //       value: value,
+                  //       child: Text(value),
+                  //     );
+                  //   }).toList(),
+                  //   validator: (value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Please select your gender';
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
+                  // SizedBox(
+                  //   height: 24.h,
+                  // ),
                   Text(
                     'Phone Number',
                     style: Theme.of(context)
@@ -274,10 +312,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 4.h,
                   ),
-                  TextFormField(
+                  IntlPhoneField(
+                    dropdownTextStyle: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Colors.black, fontSize: 15.sp),
+                    textAlign: TextAlign.left,
+                    invalidNumberMessage: 'Enter a Valid Number',
+                    showCountryFlag: true,
+                    initialCountryCode: 'NG',
                     controller: _phoneNumberController,
                     textInputAction: TextInputAction.done,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     keyboardType: TextInputType.number,
                     style: Theme.of(context)
                         .textTheme
@@ -286,15 +331,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     decoration: const InputDecoration(
                       hintText: '08102481227',
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your phone number';
-                      } else if (value.length < 11) {
-                        return 'Please enter a valid phone number';
-                      }
-                      // Add additional phone number validation logic if needed
-                      return null;
-                    },
                   ),
                   SizedBox(
                     height: 24.h,
@@ -369,12 +405,44 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
-      Future.delayed(const Duration(seconds: 5), () {
+      try {
+        final user = await FirebaseAuth.instance
+            .fetchSignInMethodsForEmail(_emailController.text);
+
+        if (user.isNotEmpty) {
+          // Email already exists
+          // You can show an error message or handle the case as per your requirement
+          BotToast.showSimpleNotification(title: 'E-mail already exists');
+          setState(() {
+            _isLoading = false;
+          });
+        } else {
+          if (!mounted) return;
+          Navigator.pushNamed(
+            context,
+            CreatePassword.routeName,
+            arguments: {
+              'email': _emailController.text.trim(),
+              'firstName': _firstNameController.text.trim(),
+              'lastName': _lastNameController.text.trim(),
+              'userName': _usernameController.text.trim(),
+              'phoneNumber': _phoneNumberController.text.trim(),
+              'address': _addressController.text.trim(),
+            },
+          );
+          setState(() {
+            _isLoading = false;
+          });
+        }
+
+        // Handle the error as per your requirement
+      } catch (e) {
+        print('Error occurred: $e');
         setState(() {
           _isLoading = false;
         });
@@ -383,12 +451,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         // _usernameController.clear();
         // _emailController.clear();
         // _phoneNumberController.clear();
-
-        Navigator.pushNamed(
-          context,
-          CreatePassword.routeName,
-        );
-      });
+      }
     }
   }
 }

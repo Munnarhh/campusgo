@@ -1,6 +1,13 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:campusgo/core/utilities/validation.dart';
 import 'package:campusgo/core/widgets/password_validator.dart';
+import 'package:campusgo/features/authentication/presentation/views/login.dart';
+import 'package:campusgo/features/authentication/presentation/views/loginpage.dart';
 import 'package:campusgo/features/authentication/presentation/views/otp_verification.dart';
+import 'package:campusgo/features/home/presentation/pages/home2.dart';
+import 'package:campusgo/global/global.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,6 +31,12 @@ class _CreatePasswordState extends State<CreatePassword> {
   bool _showValidator = false;
   bool _isLoading = false;
   bool _obscurePassword = true;
+  late String email;
+  late String firstName;
+  late String lastName;
+  late String userName;
+  late String phoneNumber;
+  late String address;
 
   @override
   void dispose() {
@@ -32,8 +45,71 @@ class _CreatePasswordState extends State<CreatePassword> {
     super.dispose();
   }
 
+  Future<void> _sendEmailVerification() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+      BotToast.showText(text: 'Email verification link sent');
+      if (!mounted) return;
+      Navigator.pushReplacementNamed(context, LoginRegister.routeName);
+    }
+  }
+
+  void _submitForm() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      await firebaseAuth
+          .createUserWithEmailAndPassword(
+        email: email,
+        password: _confirmPasswordController.text.trim(),
+      )
+          .then((auth) {
+        currentUser = auth.user;
+        if (currentUser != null) {
+          Map userMap = {
+            'id': currentUser!.uid,
+            'name': '$lastName $firstName',
+            'email': email,
+            'username': userName,
+            'address': address,
+            'phone': phoneNumber,
+          };
+
+          DatabaseReference userRef =
+              FirebaseDatabase.instance.ref().child('users');
+          userRef.child(currentUser!.uid).set(userMap);
+        }
+
+        BotToast.showSimpleNotification(title: 'Successfully Registered');
+        _sendEmailVerification();
+        // Navigator.pushReplacementNamed(
+        //   context,
+        //   Homee.routeName,
+        // );
+      }).catchError((errorMessage) {
+        BotToast.showText(text: 'Error occured: \n $errorMessage');
+      });
+      setState(() {
+        _isLoading = false;
+      });
+    } else {
+      BotToast.showText(text: 'Not all fields are valid');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> arguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    firstName = arguments['firstName'];
+    email = arguments['email'];
+    lastName = arguments['lastName'];
+    userName = arguments['userName'];
+    phoneNumber = arguments['phoneNumber'];
+    address = arguments['address'];
     return Scaffold(
       backgroundColor: const Color(kBackgroundColor),
       body: Padding(
@@ -175,25 +251,5 @@ class _CreatePasswordState extends State<CreatePassword> {
         ),
       ),
     );
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
-      Future.delayed(
-        const Duration(seconds: 5),
-        () {
-          setState(() {
-            _isLoading = false;
-          });
-          Navigator.pushNamed(
-            context,
-            OtpVerification.routeName,
-          );
-        },
-      );
-    }
   }
 }
