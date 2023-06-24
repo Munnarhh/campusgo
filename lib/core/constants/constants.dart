@@ -52,8 +52,8 @@ const String kWhiteTag = "assets/icons/white_tag.svg";
 const String kSuccesss = "assets/gifs/success.gif";
 
 //keys
-// const String kMapKey = "AIzaSyCTsnQMYvepCa1mBh-aYJ6bapBSGN7-NHg";
+
 const String kMapKey = "";
 
 const String pp =
-    'https://maps.googleapis.com/maps/api/geocode/json?latlng=6.671785162584827,3.1525325969473825&key=AIzaSyAZ7ZkzSDawETIza8EnzK6H5RJjinmlW7g';
+    'https://maps.googleapis.com/maps/api/geocode/json?latlng=6.671785162584827,3.1525325969473825&key=';
