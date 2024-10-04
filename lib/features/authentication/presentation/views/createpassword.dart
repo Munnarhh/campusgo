@@ -73,7 +73,7 @@ class _CreatePasswordState extends State<CreatePassword> {
             'id': currentUser!.uid,
             'name': '$lastName $firstName',
             'email': email,
-            'username': userName,
+            // 'username': userName,
             'address': address,
             'phone': phoneNumber,
           };
@@ -107,7 +107,7 @@ class _CreatePasswordState extends State<CreatePassword> {
     firstName = arguments['firstName'];
     email = arguments['email'];
     lastName = arguments['lastName'];
-    userName = arguments['userName'];
+    // userName = arguments['userName'];
     phoneNumber = arguments['phoneNumber'];
     address = arguments['address'];
     return Scaffold(

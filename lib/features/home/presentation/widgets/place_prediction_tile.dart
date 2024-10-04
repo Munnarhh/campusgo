@@ -1,7 +1,7 @@
 import 'package:campusgo/core/constants/constants.dart';
 import 'package:campusgo/core/info_handler/app_info.dart';
 
-import 'package:campusgo/features/home/assistant/request_assistant.dart';
+import 'package:campusgo/core/assistant/request_assistant.dart';
 import 'package:campusgo/features/home/data/models/directions.dart';
 import 'package:campusgo/features/home/data/models/predicted_places.dart';
 import 'package:campusgo/features/home/presentation/widgets/progress_dialog.dart';
@@ -71,7 +71,7 @@ class _PredictionPlaceTileDesignState extends State<PredictionPlaceTileDesign> {
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
         child: Row(
           children: [
-            Icon(
+            const Icon(
               Icons.location_on,
               color: kPrimaryColor2,
             ),

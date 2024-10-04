@@ -1,15 +1,18 @@
-import 'package:campusgo/features/home/assistant/request_assistant.dart';
+import 'dart:convert';
+
+import 'package:campusgo/core/assistant/request_assistant.dart';
 import 'package:campusgo/global/global.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/constants/constants.dart';
-import '../../../core/info_handler/app_info.dart';
-import '../data/models/direction_details_info.dart';
-import '../data/models/directions.dart';
-import '../data/models/user_model.dart';
+import '../constants/constants.dart';
+import '../info_handler/app_info.dart';
+import '../../features/home/data/models/direction_details_info.dart';
+import '../../features/home/data/models/directions.dart';
+import '../../features/home/data/models/user_model.dart';
+import 'package:http/http.dart' as http;
 
 class AssistantMethods {
   static void readCurrentOnlineUserInfo() async {
@@ -75,5 +78,55 @@ class AssistantMethods {
     directionDetailsInfo.durationValue =
         responseDirectionApi['routes'][0]['legs'][0]['duration']['value'];
     return directionDetailsInfo;
+  }
+
+  static double calCulateFareAmountFromOriginToDestination(
+      DirectionDetailsInfo directionDetailsInfo) {
+    double timeTraveledFareAmountPerMinute =
+        (directionDetailsInfo.durationValue! / 60) * 0.1;
+    double distanceTravelledFareAmountPerKilometer =
+        (directionDetailsInfo.durationValue! / 1000) * 0.1;
+
+    //usd
+    double totalFareAmount = timeTraveledFareAmountPerMinute +
+        distanceTravelledFareAmountPerKilometer;
+    return double.parse(totalFareAmount.toStringAsFixed(1));
+  }
+
+  static sendNotificationToDriverNow(
+      String deviceRegistrationToken, String userRideRequestId, context) {
+    String destinationAddress = userDropOffAddress;
+    print('hello');
+    print('hello my is$deviceRegistrationToken');
+    Map<String, String> headerNotification = {
+      'Content-Type': 'application/json',
+      'Authorization': cloudMessagingServerToken,
+    };
+
+    Map bodyNotification = {
+      'body': 'Destination Address: \n$destinationAddress.',
+      'title': 'New Trip Request'
+    };
+
+    Map dataMap = {
+      'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+      'id': '1',
+      'status': 'done',
+      'rideRequestId': userRideRequestId,
+    };
+
+    Map officialNotificationFormat = {
+      'notification': bodyNotification,
+      'data': dataMap,
+      'priority': 'high',
+      'to': deviceRegistrationToken,
+    };
+    var responseNotification = http.post(
+      Uri.parse(
+        'https://fcm.googleapis.com/fcm/send',
+      ),
+      headers: headerNotification,
+      body: jsonEncode(officialNotificationFormat),
+    );
   }
 }

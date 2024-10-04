@@ -1,4 +1,4 @@
-import 'package:campusgo/features/home/assistant/request_assistant.dart';
+import 'package:campusgo/core/assistant/request_assistant.dart';
 import 'package:campusgo/features/home/data/models/predicted_places.dart';
 import 'package:campusgo/features/home/presentation/widgets/place_prediction_tile.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class _SearchPlacePlageState extends State<SearchPlacePlage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          leadingWidth: 0,
+          //leadingWidth: 1,
           automaticallyImplyLeading: true,
           iconTheme: const IconThemeData(color: Colors.black),
           elevation: 0,

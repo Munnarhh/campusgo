@@ -35,12 +35,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 'We have sent you an email to recover password, please check email');
       }).catchError((errorMessage) {
         BotToast.showSimpleNotification(
-            title: 'Error Ocurred: \n $errorMessage');
+            title: 'Error Occurred:\n$errorMessage');
+      }).whenComplete(() {
+        setState(() {
+          _isLoading = false;
+        });
       });
     }
-    setState(() {
-      _isLoading = false;
-    });
   }
 
   @override
@@ -48,7 +49,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       backgroundColor: const Color(kBackgroundColor),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Form(
           key: _formKey,
           child: Column(

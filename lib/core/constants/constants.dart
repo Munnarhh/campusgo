@@ -13,6 +13,10 @@ const String kProfileAvatar = "assets/images/profile.png";
 const String kCar = "assets/images/car.png";
 const String kPin = "assets/images/pin.png";
 const String kPinn = "assets/images/pinn.png";
+const String kCars = "assets/images/carss.png";
+const String kShared = "assets/images/shared.png";
+const String kPrivate = "assets/images/private.png";
+const String kCommercial = "assets/images/commercial.png";
 
 //Colors
 const kPrimaryColor = 0xFF7A64FF;
@@ -52,8 +56,8 @@ const String kWhiteTag = "assets/icons/white_tag.svg";
 const String kSuccesss = "assets/gifs/success.gif";
 
 //keys
-
-const String kMapKey = "";
+// const String kMapKey = "AIzaSyCTsnQMYvepCa1mBh-aYJ6bapBSGN7-NHg";
+const String kMapKey = "AIzaSyAZ7ZkzSDawETIza8EnzK6H5RJjinmlW7g";
 
 const String pp =
-    'https://maps.googleapis.com/maps/api/geocode/json?latlng=6.671785162584827,3.1525325969473825&key=';
+    'https://maps.googleapis.com/maps/api/geocode/json?latlng=6.671785162584827,3.1525325969473825&key=AIzaSyAZ7ZkzSDawETIza8EnzK6H5RJjinmlW7g';

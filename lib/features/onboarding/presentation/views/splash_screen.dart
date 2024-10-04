@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:campusgo/core/constants/constants.dart';
 import 'package:campusgo/features/authentication/presentation/views/login.dart';
 import 'package:campusgo/features/authentication/presentation/views/loginpage.dart';
-import 'package:campusgo/features/home/assistant/assistant.dart';
+import 'package:campusgo/core/assistant/assistant.dart';
 import 'package:campusgo/features/home/presentation/pages/home2.dart';
 import 'package:campusgo/features/onboarding/presentation/views/onboarding.dart';
 import 'package:campusgo/global/global.dart';

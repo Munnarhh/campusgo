@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:campusgo/core/assistant/geofire_assistant.dart';
 import 'package:campusgo/core/widgets/primarybutton.dart';
+import 'package:campusgo/features/home/data/models/active_nearby_available_drivers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,7 +14,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/constants/constants.dart';
 import '../../../../core/info_handler/app_info.dart';
-import '../../assistant/assistant.dart';
+import '../../../../core/assistant/assistant.dart';
 import '../../data/models/directions.dart';
 
 class PrecisePickUpPage extends StatefulWidget {

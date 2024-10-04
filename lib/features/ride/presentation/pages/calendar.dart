@@ -1,4 +1,6 @@
 import 'package:campusgo/core/widgets/primarybutton.dart';
+import 'package:campusgo/features/home/presentation/pages/home2.dart';
+import 'package:campusgo/features/home/presentation/widgets/progress_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -145,6 +147,11 @@ class _SelectDatePageState extends State<SelectDatePage> {
                                   kPrimaryColor2)),
                           onPressed: () {
                             Navigator.of(context).pop();
+                            const ProgressDialog(message: 'Setting up trip');
+                            Future.delayed(Duration(milliseconds: 5), () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, Homee.routeName);
+                            });
                           },
                           child: Text(
                             'Proceed',

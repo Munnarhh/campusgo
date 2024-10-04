@@ -1,7 +1,9 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:campusgo/features/authentication/presentation/views/forgot_password.dart';
+import 'package:campusgo/features/onboarding/presentation/views/splash_screen.dart';
 
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 import 'package:flutter/material.dart';
 
@@ -45,24 +47,38 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       )
-          .then((auth) {
-        currentUser = auth.user;
-
-        if (currentUser!.emailVerified) {
-          // Email is verified, allow login
-          BotToast.showSimpleNotification(title: 'Successfully Logged In');
-          Navigator.pushReplacementNamed(
-            context,
-            Homee.routeName,
-          );
-        } else {
-          // Email is not verified, show an error message
-          BotToast.showSimpleNotification(
-              title: 'Please verify your email before logging in');
-        }
-      }).catchError((errorMessage) {
-        BotToast.showText(text: 'Error occured: \n $errorMessage');
-      });
+          .then((auth) async {
+        DatabaseReference userRef =
+            FirebaseDatabase.instance.ref().child('users');
+        userRef.child(firebaseAuth.currentUser!.uid).once().then(
+          (value) {
+            final snap = value.snapshot;
+            if (snap.value != null) {
+              currentUser = auth.user;
+              if (currentUser!.emailVerified) {
+                // Email is verified, allow login
+                BotToast.showSimpleNotification(
+                    title: 'Successfully Logged In');
+                Navigator.pushReplacementNamed(context, Homee.routeName);
+              } else {
+                // Email is not verified, show an error message
+                BotToast.showSimpleNotification(
+                  title: 'Please verify your email before logging in',
+                );
+                firebaseAuth.signOut();
+              }
+            } else {
+              BotToast.showText(text: 'No record exists with this email');
+              firebaseAuth.signOut();
+              Navigator.pushNamed(context, SplashScreen.routeName);
+            }
+          },
+        );
+      }).catchError(
+        (errorMessage) {
+          BotToast.showText(text: 'Error occured: \n $errorMessage');
+        },
+      );
 
       setState(() {
         _isLoading = false;

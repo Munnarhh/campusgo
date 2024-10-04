@@ -40,7 +40,7 @@ class _LoginRegisterState extends State<LoginRegister>
     return Scaffold(
       backgroundColor: const Color(kBackgroundColor),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
         child: Column(
           children: [
             SizedBox(height: 136.h),

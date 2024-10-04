@@ -430,7 +430,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               'email': _emailController.text.trim(),
               'firstName': _firstNameController.text.trim(),
               'lastName': _lastNameController.text.trim(),
-              'userName': _usernameController.text.trim(),
+              // 'userName': _usernameController.text.trim(),
               'phoneNumber': _phoneNumberController.text.trim(),
               'address': _addressController.text.trim(),
             },
